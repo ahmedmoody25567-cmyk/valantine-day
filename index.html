@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عشقي الأبدي - Basmala ❤️</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@400;600;700;800;900&family=Great+Vibes&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti & FontAwesome -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- شاشة الدخول (القلب النابض AB والأغنية) -->
+  <div id="welcomeScreen" class="welcome-overlay">
+    <div class="welcome-content">
+      <h2 style="color: #ff80ab; font-size: 1.8rem; margin-bottom: 20px; font-family: 'Reem Kufi', sans-serif;">اضغطي على القلب عشان تدخلي دنيتي يا بسبوسة ✨</h2>
+      <div class="pulsing-heart" onclick="startWebsite()">
+        <span>AB</span>
+      </div>
+      <p style="color: #ffe082; margin-top: 20px; font-weight: 700;">(اضغطي هنا يا قلبي ❤️)</p>
+    </div>
+  </div>
+
+  <!-- الأغنية (ملف صوتي منفصل) -->
+  <audio id="loveSong" loop>
+    <source src="kol_hayaati.mp3" type="audio/mp3">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <canvas id="fx-canvas"></canvas>
+
+  <div class="container" id="mainContainer" style="display: none;">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="love-badge">
+        <i class="fa-solid fa-heart-pulse"></i> مالكة قلبي وعشقي الأبدي.. بسبوسة ❤️
+      </div>
+      <h1 class="main-title">Basmala</h1>
+      <div class="sub-title">كل حياتي ودنيتي ✨</div>
+    </header>
+
+    <!-- رسالة حب واعتذار عيد الحب -->
+    <div class="glass-card gratitude-card">
+      <div class="quote-icon"><i class="fa-solid fa-crown"></i></div>
+      <p class="hero-text">
+        يا أطيب وأغلى <span class="highlight">بسبوسة</span> في الدنيا ❤️<br>
+        عارف إني نسيت الفلانتين (عيد الحب) غصب عني وسط لغبطة وضغوط الدنيا، بس والله العظيم إنتي في قلبي وكل يوم بيعدي هو عيد ليا وأنا معاكي وبحبك فيه.<br>
+        حقك عليا يا ستي، والصفحة دي وكل تفصيلة فيها هي تعويض بسيط لعيونك الحلوة عشان أقولك إني متيم بيكي وبحبك لحد آخر يوم في عمري.
+      </p>
+    </div>
+
+    <!-- Live Timer Section -->
+    <div class="glass-card timer-card">
+      <h3 style="color: var(--text-gold); margin-bottom: 15px; font-weight: 800;">
+        <i class="fa-solid fa-clock-rotate-left"></i> بنحب بعض من يوم 24 أبريل 2024 لحد ما لا نهاية:
+      </h3>
+      <div class="timer-grid">
+        <div class="timer-box"><span id="days">0</span><label>يوم</label></div>
+        <div class="timer-box"><span id="hours">0</span><label>ساعة</label></div>
+        <div class="timer-box"><span id="minutes">0</span><label>دقيقة</label></div>
+        <div class="timer-box"><span id="seconds">0</span><label>ثانية</label></div>
+      </div>
+    </div>
+
+    <!-- Memory Deck (الصور + صورة الدم وجملة اسمك بيجري في دمي) -->
+    <h3 style="color: white; text-align: center; font-weight: 800; margin-bottom: 15px;">
+      <i class="fa-solid fa-camera-retro"></i> ألبوم ذكرياتنا (اضغطي للتقليب يا بسبوسة)
+    </h3>
+    <div class="memory-deck" id="memoryDeck"></div>
+
+    <!-- Videos Section (الفيديوهات) -->
+    <h3 style="color: white; text-align: center; font-weight: 800; margin: 30px 0 15px 0;">
+      <i class="fa-solid fa-video"></i> فيديوهات ذكرياتنا الغالية 🎬
+    </h3>
+    <div class="videos-grid">
+      <div class="video-card">
+        <video src="video_1.mov" muted loop autoplay playsinline></video>
+        <p>احلي يوم في حياتي لما ببقي جمبك ♥</p>
+      </div>
+      <div class="video-card">
+        <video src="video_2.mov" muted loop autoplay playsinline></video>
+        <p>احلي يوم في حياتي لما ببقي جمبك ♥</p>
+      </div>
+      <div class="video-card">
+        <video src="video_3.mov" muted loop autoplay playsinline></video>
+        <p>احلي يوم في حياتي لما ببقي جمبك ♥</p>
+      </div>
+    </div>
+
+    <!-- Love Fingerprint Test -->
+    <div class="glass-card scanner-card" style="margin-top: 35px;">
+      <h3 style="color: var(--text-gold); margin-bottom: 15px; font-weight: 800;">
+        <i class="fa-solid fa-fingerprint"></i> اختبار مقياس العشق والتطابق
+      </h3>
+      <p style="margin-bottom: 20px; color: #ff80ab; font-weight: 600;">اضغطي بـ إصبِعِك هنا يا بسبوسة عشان نقيس نسبة حبنا!</p>
+      <div class="fingerprint-btn" onclick="scanLove()"><i class="fa-solid fa-fingerprint"></i></div>
+      <div class="scan-result" id="scanResult">
+        <div class="percent" id="percentText">0%</div>
+        <div style="font-size: 1.3rem; font-weight: 700; color: #fff;" id="resultMsg">جاري التحليل...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
